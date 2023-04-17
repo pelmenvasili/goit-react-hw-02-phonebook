@@ -1,5 +1,4 @@
 import { Component } from 'react';
-import PropTypes from 'prop-types';
 import { nanoid } from 'nanoid';
 import css from './App.module.css';
 import ContactForm from 'components/ContactForm/ContactForm';
@@ -10,17 +9,6 @@ class App extends Component {
   state = {
     contacts: [],
     filter: '',
-  };
-
-  static propTypes = {
-    contacts: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.string,
-        name: PropTypes.string,
-        number: PropTypes.string,
-      })
-    ),
-    filter: PropTypes.string,
   };
 
   handleFormSubmit = ({ name, number }) => {
@@ -49,12 +37,15 @@ class App extends Component {
     }));
   };
 
-  render() {
+  filteredContacts = () => {
     const { contacts, filter } = this.state;
-
-    const filteredContacts = contacts.filter(({ name }) => {
+  return contacts.filter(({ name }) => {
       return name.toLowerCase().includes(filter.toLowerCase());
     });
+  }
+
+  render() {
+    const { filter } = this.state;
 
     return (
       <div className={css.app}>
@@ -63,7 +54,7 @@ class App extends Component {
         <h2 className={css.contactsTitle}>Contacts</h2>
         <Filter value={filter} onChange={this.handleFilterChange} />
         <ContactList
-          contacts={filteredContacts}
+          contacts={this.filteredContacts()}
           onDeleteContact={this.handleContactDelete}
         />
       </div>

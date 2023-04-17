@@ -3,12 +3,6 @@ import PropTypes from 'prop-types';
 import css from './ContactListItem.module.css';
 
 class ContactListItem extends Component {
-  static propTypes = {
-    id: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    number: PropTypes.string.isRequired,
-    onDeleteContact: PropTypes.func.isRequired,
-  };
 
   render() {
     const { id, name, number, onDeleteContact } = this.props;
@@ -27,3 +21,10 @@ class ContactListItem extends Component {
 }
 
 export default ContactListItem;
+
+ContactListItem.propTypes = {
+    id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    number: PropTypes.string.isRequired,
+    onDeleteContact: PropTypes.func.isRequired,
+  };

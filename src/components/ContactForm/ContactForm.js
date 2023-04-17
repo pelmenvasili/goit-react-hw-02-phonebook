@@ -1,16 +1,13 @@
 import { Component } from 'react';
 import PropTypes from 'prop-types';
 import css from './ContactForm.module.css';
-
 class ContactForm extends Component {
-  static propTypes = {
-    onSubmit: PropTypes.func.isRequired,
-  };
 
   state = {
     name: '',
     number: '',
   };
+
   handleNameChange = event => {
     this.setState({ name: event.target.value });
   };
@@ -45,8 +42,7 @@ class ContactForm extends Component {
             />
           </label>
           <label className={css.label}>
-            {' '}
-            Number{' '}
+            Number
             <input
               className={css.input}
               type="tel"
@@ -69,3 +65,7 @@ class ContactForm extends Component {
 }
 
 export default ContactForm;
+
+ContactForm.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+};
